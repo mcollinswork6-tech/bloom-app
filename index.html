@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom Health</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="firebase.js"></script>
+</head>
+
+<body>
+
+    <!-- Floating Navigation Bar (Glassmorphism) -->
+    <header class="glass-panel"
+        style="position: sticky; top: 0; z-index: 50; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <div class="label-md" style="font-size: 1rem; color: var(--primary);">Bloom</div>
+        <div style="display: flex; gap: 1rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" style="color: var(--on-surface);">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <div class="container stack-xl">
+
+        <!-- Headers -->
+        <div style="margin-top: 2rem;">
+            <button id="logout-btn" class="btn btn-secondary" style="width: auto; padding: 0.5rem 1rem;">
+                Sign Out
+            </button>
+        </div>
+
+
+        <div class="header-welcome">
+            <h1 class="display-lg">Welcome back, <span id="user-name">...</span></h1>
+            <p class="body-lg">Your sanctuary is ready for you.</p>
+        </div>
+        <div>
+            <div class="label-md">Milestone Moment</div>
+            <h1 class="display-lg">Week 24</h1>
+            <p class="body-lg" style="margin-top: 1rem; max-width: 90%;">Your baby is now the size of an ear of corn.
+                You might start feeling more pronounced movement this week.</p>
+        </div>
+
+        <!-- Nurture Tracker -->
+        <div class="nurture-tracker" id="hydrationTracker">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="label-md" style="color: rgba(255,255,255,0.8);">Daily Hydration</span>
+                <span style="font-weight: 600;" id="hydrationCount">3 / 8 glasses</span>
+            </div>
+            <div style="height: 6px; background: rgba(255,255,255,0.3); border-radius: 99px; overflow: hidden;">
+                <div style="height: 100%; width: 37.5%; background: white; border-radius: 99px; transition: width 0.3s ease;"
+                    id="hydrationBar"></div>
+            </div>
+            <p class="body-lg" style="color: rgba(255,255,255,0.9); font-size: 0.875rem;">Tap to log a glass. Stay
+                hydrated to maintain amniotic fluid levels.</p>
+        </div>
+
+        <!-- Content Section (Layering) -->
+        <div class="layer-section stack-md">
+            <h2 class="headline-md">Today's Focus</h2>
+
+            <div class="layer-interactive">
+                <h3 class="label-md">Nutrition</h3>
+                <p class="body-lg" style="margin-top: 0.5rem; color: var(--on-surface);">Iron-rich foods are crucial
+                    right now. Try adding spinach or lentils to your dinner.</p>
+            </div>
+
+            <div class="layer-interactive">
+                <h3 class="label-md">Movement</h3>
+                <p class="body-lg" style="margin-top: 0.5rem; color: var(--on-surface);">A 15-minute gentle prenatal
+                    yoga flow can help edge out lower back pain.</p>
+            </div>
+        </div>
+
+        <!-- Inputs and Forms -->
+        <div class="layer-section">
+            <h2 class="headline-md mb-lg" style="margin-bottom: 1.5rem;">How are you feeling?</h2>
+
+            <div class="input-group">
+                <label for="mood">Journal Entry</label>
+                <input type="text" id="mood" class="input-soft" placeholder="I'm feeling a bit tired but excited...">
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button class="btn btn-primary" id="saveBtn">Log Entry</button>
+                <button class="btn btn-secondary">Skip</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Supportive Toast -->
+    <div class="toast" id="supportToast">
+        You're doing wonderfully. ✨
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom Health - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="firebase.js"></script>
+</head>
+
+<body
+    style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: var(--space-xl);">
+
+    <div class="container stack-xl" style="width: 100%; max-width: 400px; padding: 0;">
+
+        <!-- Header -->
+        <div style="text-align: center;" class="stack-md">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round"
+                style="color: var(--primary); margin: 0 auto; display: block;">
+                <!-- Leaf / Bloom Icon -->
+                <path d="M12 22v-7l-2-2"></path>
+                <path d="M12 15l2-2"></path>
+                <path d="M2.5 8C2.5 4 6.5 2 12 2c5.5 0 9.5 2 9.5 6 0 5-6.5 10.5-9.5 13-3-2.5-9.5-8-9.5-13z"></path>
+            </svg>
+            <h1 class="display-lg" style="font-size: 2.5rem;">Join us</h1>
+            <p class="body-lg">Create your digital sanctuary.</p>
+        </div>
+
+        <!-- Sign Up Form -->
+        <form id="signup-form" class="layer-section stack-md">
+            <div class="input-group">
+                <label for="signup-email">Email Address</label>
+                <input type="email" id="signup-email" class="input-soft" placeholder="create@example.com" required>
+            </div>
+
+            <div class="input-group">
+                <label for="signup-password">Create Password</label>
+                <input type="password" id="signup-password" class="input-soft" placeholder="Min 6 characters" required>
+            </div>
+
+            <p id="signup-error" style="color: #ff4d4d; font-size: 0.875rem; display: none;"></p>
+
+            <div style="margin-top: var(--space-xl);">
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+            </div>
+        </form>
+
+        <!-- Secondary Actions -->
+        <div style="text-align: center;" class="stack-md">
+            <div style="margin-top: 1.5rem;">
+                <span class="body-lg" style="font-size: 0.875rem;">Already have an account? </span>
+                <a href="login.html" class="label-md" style="text-decoration: none; color: var(--primary);">Sign In</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

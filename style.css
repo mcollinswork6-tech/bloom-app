@@ -1,0 +1,297 @@
+/* style.css - Bloom Health: Tactile Sanctuary */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
+
+:root {
+  /* Colors - Sage, Blush, Sand */
+  --primary: #51634E;
+  --primary-container: #8DA189;
+  --primary-fixed: #D3E8CE;
+  --secondary: #7A5644;
+  --secondary-container: #FDCDB6;
+  --secondary-fixed: #FFDBCB;
+  --surface: #FAF9F5;
+  --surface-container-low: #F5F4F0;
+  --surface-container-high: #E9E8E4;
+  --surface-container-lowest: #FFFFFF;
+  --on-surface: #1B1C1A;
+  --on-surface-variant: #434841;
+  --on-primary: #FFFFFF;
+  --on-secondary: #FFFFFF;
+  --outline-variant: rgba(196, 200, 191, 0.15);
+  /* 15% opacity ghost border */
+
+  /* Typography */
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-headline: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Inter', sans-serif;
+
+  /* Spacing Scale (base 1rem/16px) */
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Roundedness */
+  --radius-lg: 1.5rem;
+  --radius-xl: 3rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-ambient: 0 8px 24px rgba(27, 28, 26, 0.06);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--surface);
+  color: var(--on-surface);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding-bottom: var(--space-2xl);
+  /* Bottom padding for mobile */
+}
+
+/* Typography Classes */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display,
+.headline {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.display-lg {
+  font-size: 3.5rem;
+  letter-spacing: -2%;
+}
+
+.headline-md {
+  font-size: 1.75rem;
+  letter-spacing: -1%;
+}
+
+.body-lg {
+  font-size: 1rem;
+  color: var(--on-surface-variant);
+}
+
+.label-md {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Glassmorphism & Overlays */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  /* This gives the iOS frosted glass effect */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Tonal Layers - No precise borders */
+.layer-base {
+  background: var(--surface);
+}
+
+.layer-section {
+  background: var(--surface-container-low);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.layer-interactive {
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-ambient);
+  padding: var(--space-xl);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.layer-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(27, 28, 26, 0.08);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  background-color: var(--on-surface);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-fixed);
+  color: var(--on-surface);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-container);
+}
+
+/* Inputs */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.input-group label {
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+  margin-left: 1.5rem;
+}
+
+.input-soft {
+  background-color: var(--surface-container-low);
+  border: 1px solid transparent;
+  /* No line until active fallback */
+  border-radius: var(--radius-xl);
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--on-surface);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-soft:focus {
+  background-color: var(--surface-container-lowest);
+  box-shadow: var(--shadow-ambient);
+}
+
+.input-soft::placeholder {
+  color: var(--outline-variant);
+  /* very light */
+}
+
+/* Nurture Tracker */
+.nurture-tracker {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  color: var(--on-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  box-shadow: var(--shadow-ambient);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nurture-tracker:active {
+  transform: scale(0.98);
+}
+
+/* Layout */
+.container {
+  max-width: 480px;
+  /* Mobile focused */
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.toast {
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    /* Start hidden: shifted down and invisible */
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+
+    background: var(--surface-container-lowest);
+    padding: 1rem 2rem;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-ambient);
+    pointer-events: none;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--on-surface);
+    z-index: 100;
+
+    /* The cubic-bezier makes it "bounce" slightly like an iOS notification */
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* This class will be toggled by JavaScript */
+  .toast.show {
+    display: block !important;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--surface-container-lowest);
+  padding: 1rem 2rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-ambient);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--on-surface);
+  z-index: 100;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Utility to ensure space between items without lines */
+.stack-md>*+* {
+  margin-top: var(--space-md);
+}
+
+.stack-lg>*+* {
+  margin-top: var(--space-lg);
+}
+
+.stack-xl>*+* {
+  margin-top: var(--space-xl);
+}
