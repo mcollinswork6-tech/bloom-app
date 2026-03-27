@@ -6,71 +6,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloom Health</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="firebase.js"></script>
+    <script type="module" src="main.js"></script>
 </head>
 
 <body>
 
-    <!-- Floating Navigation Bar (Glassmorphism) -->
-    <header class="glass-panel"
-        style="position: sticky; top: 0; z-index: 50; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-        <div class="label-md" style="font-size: 1rem; color: var(--primary);">Bloom</div>
-        <div style="display: flex; gap: 1rem;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" style="color: var(--on-surface);">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path
-                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
-                </path>
-            </svg>
+    <header class="glass-panel" <div
+        style="position: sticky; top: 0; z-index: 100; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background-color: rgb(255, 255, 255);">
+        <div class="label-md" style="display: flex; align-items: center;">
+            <img src="bloom.png" alt="Bloom Logo" style="height: 3rem; width: auto;">
         </div>
+        </div>
+
+        <button id="menu-toggle"
+            style="background: none; border: none; cursor: pointer; color: var(--on-surface); padding: 4px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
     </header>
+
+    <div id="side-menu" class="side-menu">
+        <div class="menu-content stack-md">
+            <div style="display: flex; justify-content: flex-end;">
+                <button id="menu-close"
+                    style="background: none; border: none; font-size: 2rem; color: var(--on-surface); cursor: pointer;">&times;</button>
+            </div>
+
+            <div class="menu-profile" style="margin-bottom: 2rem;">
+                <div class="label-md" style="opacity: 0.7; margin-bottom: 4px;">Currently Blooming</div>
+                <h2 class="headline-md" id="user-name-menu" style="font-size: 1.5rem;">...</h2>
+            </div>
+
+            <nav class="stack-sm">
+                <div class="menu-item" id="theme-toggle">
+                    <span>Appearance</span>
+                    <span id="theme-label" class="label-md" style="color: var(--primary);">Light Mode</span>
+                </div>
+
+                <a href="history.html" class="menu-item" style="text-decoration: none; color: inherit;">
+                    <span>My Journey</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6" />
+                    </svg>
+                </a>
+
+                <div class="menu-item" id="logout-btn" style="color: #ff4d4d; margin-top: 1rem;">
+                    <span>Sign Out</span>
+                </div>
+            </nav>
+
+            <div
+                style="margin-top: auto; padding-top: 3rem; text-align: center; border-top: 1px solid rgba(0,0,0,0.05);">
+                <button id="delete-account-btn" style="
+            background-color: #fee2e2; 
+            color: #dc2626; 
+            border: 1.5px solid #fecaca; 
+            padding: 0.75rem 1.5rem; 
+            border-radius: 8px; 
+            font-size: 0.875rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.2s ease;
+            width: 100%;
+            max-width: 200px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        " onmouseover="this.style.backgroundColor='#fecaca'; this.style.borderColor='#ef4444';"
+                    onmouseout="this.style.backgroundColor='#fee2e2'; this.style.borderColor='#fecaca';">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                    </svg>
+                    Delete Account
+                </button>
+                <p style="font-size: 0.7rem; color: #94a3b8; margin-top: 0.75rem;">This action cannot be undone.</p>
+            </div>
+        </div>
+    </div>
 
     <div class="container stack-xl">
 
-        <!-- Headers -->
-        <div style="margin-top: 2rem;">
-            <button id="logout-btn" class="btn btn-secondary" style="width: auto; padding: 0.5rem 1rem;">
-                Sign Out
-            </button>
-        </div>
-
-
-        <div class="header-welcome">
-            <h1 class="display-lg">Welcome back, <span id="user-name">...</span></h1>
-            <p class="body-lg">Your sanctuary is ready for you.</p>
-        </div>
-        <div>
+        <div style="margin-top: 1rem;">
             <div class="label-md">Milestone Moment</div>
             <h1 class="display-lg">Week 24</h1>
             <p class="body-lg" style="margin-top: 1rem; max-width: 90%;">Your baby is now the size of an ear of corn.
                 You might start feeling more pronounced movement this week.</p>
         </div>
 
-        <!-- Nurture Tracker -->
         <div class="nurture-tracker" id="hydrationTracker">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span class="label-md" style="color: rgba(255,255,255,0.8);">Daily Hydration</span>
-                <span style="font-weight: 600;" id="hydrationCount">3 / 8 glasses</span>
+                <span style="font-weight: 600;" id="hydrationCount">0 / 8 glasses</span>
             </div>
             <div style="height: 6px; background: rgba(255,255,255,0.3); border-radius: 99px; overflow: hidden;">
-                <div style="height: 100%; width: 37.5%; background: white; border-radius: 99px; transition: width 0.3s ease;"
+                <div style="height: 100%; width: 0%; background: white; border-radius: 99px; transition: width 0.3s ease;"
                     id="hydrationBar"></div>
             </div>
             <p class="body-lg" style="color: rgba(255,255,255,0.9); font-size: 0.875rem;">Tap to log a glass. Stay
                 hydrated to maintain amniotic fluid levels.</p>
         </div>
 
-        <!-- Content Section (Layering) -->
         <div class="layer-section stack-md">
             <h2 class="headline-md">Today's Focus</h2>
-
             <div class="layer-interactive">
                 <h3 class="label-md">Nutrition</h3>
                 <p class="body-lg" style="margin-top: 0.5rem; color: var(--on-surface);">Iron-rich foods are crucial
                     right now. Try adding spinach or lentils to your dinner.</p>
             </div>
-
             <div class="layer-interactive">
                 <h3 class="label-md">Movement</h3>
                 <p class="body-lg" style="margin-top: 0.5rem; color: var(--on-surface);">A 15-minute gentle prenatal
@@ -78,15 +126,12 @@
             </div>
         </div>
 
-        <!-- Inputs and Forms -->
         <div class="layer-section">
             <h2 class="headline-md mb-lg" style="margin-bottom: 1.5rem;">How are you feeling?</h2>
-
             <div class="input-group">
                 <label for="mood">Journal Entry</label>
                 <input type="text" id="mood" class="input-soft" placeholder="I'm feeling a bit tired but excited...">
             </div>
-
             <div style="display: flex; gap: 1rem; margin-top: 2rem;">
                 <button class="btn btn-primary" id="saveBtn">Log Entry</button>
                 <button class="btn btn-secondary">Skip</button>
@@ -95,10 +140,10 @@
 
     </div>
 
-    <!-- Supportive Toast -->
     <div class="toast" id="supportToast">
         You're doing wonderfully. ✨
     </div>
+
 </body>
 
 </html>

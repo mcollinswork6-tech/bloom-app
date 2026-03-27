@@ -232,35 +232,6 @@ h6,
 }
 
 .toast {
-  .toast {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    /* Start hidden: shifted down and invisible */
-    transform: translateX(-50%) translateY(100px);
-    opacity: 0;
-
-    background: var(--surface-container-lowest);
-    padding: 1rem 2rem;
-    border-radius: var(--radius-full);
-    box-shadow: var(--shadow-ambient);
-    pointer-events: none;
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    color: var(--on-surface);
-    z-index: 100;
-
-    /* The cubic-bezier makes it "bounce" slightly like an iOS notification */
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  /* This class will be toggled by JavaScript */
-  .toast.show {
-    display: block !important;
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-
   position: fixed;
   bottom: 2rem;
   left: 50%;
@@ -281,6 +252,7 @@ h6,
 .toast.show {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* Utility to ensure space between items without lines */
@@ -294,4 +266,45 @@ h6,
 
 .stack-xl>*+* {
   margin-top: var(--space-xl);
+}
+
+/* Side Menu Container */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  /* Hidden off-screen */
+  width: 280px;
+  height: 100%;
+  background: var(--surface-container-lowest);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 2rem 1.5rem;
+  backdrop-filter: blur(20px);
+  pointer-events: none;
+}
+
+.side-menu.open {
+  right: 0;
+  pointer-events: auto;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--surface-variant);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Dark Mode logic */
+body.dark-mode {
+  --on-surface: #f0f0f0;
+  --surface-container-lowest: #121212;
+  --surface-variant: #2a2a2a;
+  background-color: #0a0a0a;
+  color: #f0f0f0;
 }

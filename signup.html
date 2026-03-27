@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloom Health - Sign Up</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="firebase.js"></script>
+    <script type="module" src="main.js"></script>
 </head>
 
 <body
@@ -31,6 +31,11 @@
         <!-- Sign Up Form -->
         <form id="signup-form" class="layer-section stack-md">
             <div class="input-group">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" class="input-soft" placeholder="Your Name" required>
+            </div>
+
+            <div class="input-group">
                 <label for="signup-email">Email Address</label>
                 <input type="email" id="signup-email" class="input-soft" placeholder="create@example.com" required>
             </div>
@@ -38,6 +43,17 @@
             <div class="input-group">
                 <label for="signup-password">Create Password</label>
                 <input type="password" id="signup-password" class="input-soft" placeholder="Min 6 characters" required>
+            </div>
+
+            <div class="input-group">
+                <label for="signup-goal">Health Goal</label>
+                <select id="signup-goal" class="input-soft"
+                    style="appearance: none; background-color: var(--surface-container-lowest);">
+                    <option value="General Wellness">General Wellness</option>
+                    <option value="Prenatal Strength">Prenatal Strength</option>
+                    <option value="Mental Clarity">Mental Clarity</option>
+                    <option value="Postpartum Recovery">Postpartum Recovery</option>
+                </select>
             </div>
 
             <p id="signup-error" style="color: #ff4d4d; font-size: 0.875rem; display: none;"></p>
